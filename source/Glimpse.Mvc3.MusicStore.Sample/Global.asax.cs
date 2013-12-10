@@ -85,7 +85,7 @@ namespace MvcMusicStore
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
-            LoadConfiguration();
+            // HACK how do we deal with app start data? LoadConfiguration();
         }
     }
 }
