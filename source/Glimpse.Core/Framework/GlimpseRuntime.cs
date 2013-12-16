@@ -309,6 +309,8 @@ namespace Glimpse.Core.Framework
                 throw new ArgumentNullException("parameters");
             }
 
+            CallContext.LogicalSetData("fp", frameworkProvider);
+
             string message;
             var logger = Configuration.Logger;
             var context = new ResourceResultContext(logger, frameworkProvider, Configuration.Serializer, Configuration.HtmlEncoder);
@@ -717,7 +719,8 @@ namespace Glimpse.Core.Framework
             return finalResult;
         }
 
-        private string GenerateScriptTags(Guid requestId, IFrameworkProvider frameworkProvider)
+        // TODO this should not be public! This was changed to hack in OWIN support
+        public string GenerateScriptTags(Guid requestId, IFrameworkProvider frameworkProvider)
         {
             var requestStore = frameworkProvider.HttpRequestStore;
             var runtimePolicy = requestStore.Get<RuntimePolicy>(Constants.RuntimePolicyKey);
